@@ -1,0 +1,262 @@
+
+.btn-solar {
+    color: #0aa89e;
+    color: #ffffff;
+    background-color: #FF9800;
+    border-color: #0aa89e;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .img-solar {
+        background-image: url('/img/tela_login_mobile5.jpg');
+    }
+
+}
+
+@media (min-width: 1281px) {
+
+    .img-solar{
+        background-image: url('/img/tela_login_desktop5.jpg');
+
+    }
+    .col-sm-6-solar {
+
+        width: 50%;
+        float: none;
+        margin: 0 auto;
+
+    }
+}
+
+#over img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.form-control-solar {
+
+    padding: 23px;
+    height: 37px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom-color:  rgba(12, 12, 12, 0.12);
+    background: white;
+    color: #0c0c0c;
+    font-size: 16px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 30px;
+
+}
+
+.btn-primary-solar{
+    border-radius: 30px;
+}
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+
+    .img-solar{
+        background-image: url('/img/tela_login_desktop5.jpg');
+
+    }
+    .col-sm-6-solar {
+
+        width: 50%;
+        float: none;
+        margin: 0 auto;
+
+    }
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+    .img-solar{
+        background-image: url('/img/tela_login_desktop5.jpg');
+
+    }
+    .col-sm-6-solar {
+
+        width: 50%;
+        float: none;
+        margin: 0 auto;
+
+    }
+
+}
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .img-solar{
+        background-image: url('/img/tela_login_mobile5.jpg');
+
+    }
+    .col-sm-6-solar {
+
+        width: 50%;
+        float: none;
+        margin: 0 auto;
+
+    }
+
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .img-solar{
+        background-image: url('/img/tela_login_desktop5.jpg');
+
+    }
+    .col-sm-6-solar {
+
+        width: 50%;
+        float: none;
+        margin: 0 auto;
+
+    }
+
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .img-solar{
+        background-image: url('/img/tela_login_desktop5.jpg');
+
+    }
+    .col-sm-6-solar {
+
+        width: 50%;
+        float: none;
+        margin: 0 auto;
+
+    }
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .img-solar{
+        background-image: url('/img/tela_login_mobile5.jpg');
+
+    }
+    .col-sm-6-solar {
+
+        width: 100%;
+        float: none;
+        margin: 0 auto;
+
+    }
+
+}
+
+.result-container {
+    display: none;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+@media (max-width: 1300px)  {
+
+    .result-container {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #simulator {
+        align-items: center;
+    }
+
+    #simulator > div {
+        margin-bottom: 15px;
+
+    }
+
+}
+
+
+.header-nav-profile .dropdown > a{
+    min-width: 69px !important;
+}
+.header-nav-profile .dropdown > a::after {
+    content: "";
+}
+
+.dropdown-menu > li a small {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.dropdown-menu > li a small.alert-date {
+    position: absolute;
+    top: -10px;
+    background-color: #fff;
+    right: 14px;
+    line-height: 16px;
+    padding: 0 6px 0 6px;
+}
+
+@media (max-width: 660px) {
+
+    .dropdown-menu-solar {
+        left: auto;
+        right: -300% !important;
+    }
+}
+
+.card-body .card-body__lable{
+    margin-top: -12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

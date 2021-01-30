@@ -1,0 +1,96 @@
+[
+    {
+        "model-name": "Pool",
+        "resource-file": "pool.json",
+        "table-name": "mk_pools"
+    },
+    {
+        "model-name": "Profile",
+        "resource-file": "profile.json",
+        "table-name": "mk_profiles"
+    },
+    {
+        "model-name": "Router",
+        "resource-file": "router.json",
+        "table-name": "mk_routers"
+    },
+    {
+        "model-name": "Test",
+        "resource-file": "test.json"
+    },
+    {
+        "model-name": "Grupo",
+        "resource-file": "mk_grupo.json",
+        "table-name": "mk_grupos"
+    },
+    {
+        "model-name": "Debitos",
+        "resource-file": "fin_debitos.json",
+        "table-name": "fin_debitos"
+    },
+    {
+        "model-name": "Cobranca",
+        "resource-file": "cobranca.json",
+        "table-name": "cobrancas"
+    },
+    {
+        "model-name": "Log",
+        "resource-file": "syslog.json",
+        "table-name": "SystemEvents"
+    },
+    {
+        "model-name": "Aditivo",
+        "resource-file": "aditivo.json",
+        "table-name": "aditivo_tipossssssss"
+    },
+    {
+        "model-name": "Projeto",
+        "resource-file": "projeto.json",
+        "table-name": "projetos"
+    },
+    {
+        "model-name": "ContratoCelpe",
+        "resource-file": "contrato_celpe.json",
+        "table-name": "contrato_celpe"
+    },
+    {
+        "model-name": "User",
+        "resource-file": "users.json",
+        "table-name": "users"
+    },
+    {
+        "model-name": "ClienteWeb",
+        "resource-file": "cliente_webs.json",
+        "table-name": "clientes"
+    },
+    {
+        "model-name": "PreProposta",
+        "resource-file": "pre_proposta.json",
+        "table-name": "pre_propostas"
+    },
+    {
+        "model-name": "Franquia",
+        "resource-file": "franquia.json",
+        "table-name": "franquias"
+    },
+    {
+        "model-name": "Parametro",
+        "resource-file": "parametro.json",
+        "table-name": "parametros"
+    },
+    {
+        "model-name": "Procuracao",
+        "resource-file": "procuracao.json",
+        "table-name": "procuracoes"
+    },
+    {
+        "model-name": "Contrato",
+        "resource-file": "contrato.json",
+        "table-name": "contratos"
+    },
+    {
+        "model-name": "Progetov2",
+        "resource-file": "progetov2.json",
+        "table-name": "progetosv2"
+    }
+]
