@@ -4,8 +4,8 @@
     <title>GED - GESTÃO ELETRÔNICA DE DOCUMENTO</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GED - GESTÃO ELETRÔNICA DE DOCUMENTO">
-    <link rel="shortcut icon" href="/images/icone-2-100x100.png" type="image/x-icon"/>
+    <meta name="description" content="GED - GESTÃO ELETRÔNICA DE DOCUMENTOS">
+    <link rel="shortcut icon" href="/images/ICON.png" type="image/x-icon"/>
 
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="css/login.css">
@@ -58,7 +58,7 @@
 
             <form id="login-up"  class="login__create" action="{{ route('login') }}" accept-charset="utf-8" method="POST">
                 {{ csrf_field() }}
-                <h1 class="login__title">GED - GESTÃO ELETRÔNICA DE DOCUMENTO</h1>
+                <h1 class="login__title">GED - GESTÃO ELETRÔNICA DE DOCUMENTOS</h1>
 
                 <div class="login__box">
                     <i class="bx bx-user login__icon"></i>
@@ -74,9 +74,7 @@
                 <button class="login__button" type="submit">Login</button>
 
                 <dv class="login__social">
-                    <a href="" class="login__social-icon"><i class="bx bxl-facebook"></i></a>
-                    <a href="" class="login__social-icon"><i class="bx bxl-twitter"></i></a>
-                    <a href="" class="login__social-icon"><i class="bx bxl-google"></i></a>
+                    <img  src="img/eprime.png" alt="" class="src">
                 </dv>
 
             </form>

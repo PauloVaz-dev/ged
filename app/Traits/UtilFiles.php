@@ -25,6 +25,10 @@ trait UtilFiles
         if ($request->hasFile($field)){
             $file = $request->file($field);
 
+            $slug = \Auth::user()->franquia->slug;
+            $month = date('m');
+            $day = date('d');
+            $path = "storage/" . $slug . "/" . $month . $day;
 
             try {
                 $extension = $file->getClientOriginalExtension();
@@ -36,10 +40,9 @@ trait UtilFiles
                     $nameFile = "{$name}.{$extension}";
                 }
 
-                $fileStatus = $file->move("storage",$nameFile);
-                //dd($fileStatus);
+                $fileStatus = $file->move($path,$nameFile);
                 if ( $fileStatus ){
-                    return $nameFile;
+                    return $path . "/" .$nameFile;
                 }
             } catch (FileNotFoundException $e) {
                 dd("Errro", $e);
@@ -51,12 +54,6 @@ trait UtilFiles
 
     public function ImageStoreV2($file, String $field, $nameFile = null)
     {
-
-        // Define o valor default para a variável que contém o nome da imagem
-        //dd($nameFile);
-        // Verifica se informou o arquivo e se é válido
-
-
             try {
                 // File Details
                 $filename = $file->getClientOriginalName();
@@ -65,6 +62,11 @@ trait UtilFiles
                 $fileSize = $file->getSize();
                 $mimeType = $file->getMimeType();
 
+                $slug = \Auth::user()->franquia->slug;
+                $month = date('m');
+                $day = date('d');
+                $path = "storage/" . $slug . "/" . $month . $day;
+
                 if($nameFile){
                     $nameFile = "{$nameFile}";
                 }else{
@@ -72,9 +74,9 @@ trait UtilFiles
                     $nameFile = "{$name}.{$extension}";
                 }
 
-                $fileStatus = $file->move("storage",$nameFile);
+                $fileStatus = $file->move($path,$nameFile);
                 if ( $fileStatus ){
-                    return $nameFile;
+                    return $path . "/" .$nameFile;
                 }
             } catch (FileNotFoundException $e) {
                 dd("Errro", $e);

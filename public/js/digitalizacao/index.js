@@ -1,29 +1,13 @@
 $(document).ready(function () {
 
     function template(data){
-        //console.log(item);
-        
-
-
         var html = "<table class='table table-bordered'>";
-        html += "<thead>" +
-            "<tr><td></td><td></td></tr>" +
-            "</thead>";
-
-
-
-
-
         data.data.map(function (item) {
             //console.log(item);
             html += "<tr>";
-            html += "<td>" + "\n" + "<a target='_blank' href=/storage/" + item.file + ">" + item.file + "</a></td>";
+            html += "<td>" + "\n" + "<a target='_blank' href=" + item.file + ">" + 'Link do arquivo'  + "</a></td>";
             html += "</tr>"
         })
-
-
-
-
         html += "</table>";
 
         return  html;

@@ -192,6 +192,8 @@ img{
 }
 
 .login__social{
+    max-width: 60%;
+    margin: 0 auto;
     display: block;
     margin-top: 2rem;
 }

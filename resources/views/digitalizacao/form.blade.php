@@ -86,10 +86,8 @@
 
         <div class="col-sm-10">
             <div class="form-group">
-                <label for="arquivo" class="col-sm-3 control-label text-bold"><a target="_blank" href="{{ url("/storage/{$file->file}") }}" >Link Arquivo</a></label>
-                <div class="col-md-9">
-                    <input readonly class="form-control input-sm" name="teste" type="text" id="arquivo[]" value="{{ old('arquivo', isset($file) ? $file->file : null) }}">
-                </div>
+                <label for="arquivo" class="col-sm-3 control-label text-bold"><a target="_blank" href="{{ url("/{$file->file}") }}" >Link Arquivo</a></label>
+
             </div>
         </div>
 
