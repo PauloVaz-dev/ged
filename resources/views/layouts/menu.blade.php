@@ -30,7 +30,7 @@
 	<link href="{{ asset('/assets/css/theme-default/libs/bootstrap-datepicker/datepicker3.css')}}" rel="stylesheet">
 
 	<link href="{{ asset('/assets/css/theme-default/libs/sweetalert/sweetalert.css')}}" rel="stylesheet">
-	<link href="{{ asset('/assets/css/theme-default/libs/toastr/toastr.css')}}" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
 	<link href="{{ asset('/assets/css/theme-default/libs/wizard/wizard.css')}}" rel="stylesheet">
 
@@ -264,7 +264,7 @@
 <script src="{{ asset('/assets/js/core/source/AppVendor.js')}}" type="text/javascript"></script>
 
 
-<script src="{{ asset('/assets/js/libs/toastr/toastr.js')}}" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript"></script>
 
 
 <!-- Teste -->
