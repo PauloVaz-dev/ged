@@ -33,7 +33,7 @@ class DigitalizacaoFormRequest extends FormRequest
         }else{
             $rules = [
                 'descricao'      => 'required|min:3|max:255|string',
-                'arquivo' =>'required|mimes:pdf'
+                'arquivo' =>'required|mimes:jpeg,bmp,png,gif,svg,pdf'
             ];
         }
 
