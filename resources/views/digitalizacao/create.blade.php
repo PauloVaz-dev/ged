@@ -82,7 +82,7 @@
         <script>
             toastr.options.progressBar = true;
             toastr.options.positionClass = 'toast-top-right';
-            toastr.success('cadastro realizado com sucesso')
+            toastr.success(" {!! session('success_message') !!} ")
         </script>
     @endif
 @stop

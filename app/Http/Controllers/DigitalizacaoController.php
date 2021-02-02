@@ -156,7 +156,7 @@ class DigitalizacaoController extends Controller
             DigitalizacaoFile::create(['digitalizacao_id' => $digi->id, 'file' => $arquivo ]);
 
             return redirect()->route('digitalizacao.edit', $digi->id)
-                ->with('success_message', 'Cadastro atualizado com sucesso!');
+                ->with('success_message', 'Cadastro criado com sucesso!');
 
 
         } catch (Exception $e) {
