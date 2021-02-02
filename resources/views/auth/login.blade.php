@@ -13,6 +13,8 @@
     <!-- ===== BOX ICONS ===== -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
     <title>E-Primesoft - Soluções em software</title>
 </head>
 <body>
@@ -21,38 +23,6 @@
         <div class="login__img">
             <img src="img/img-login.svg" alt="" class="src">
         </div>
-
-        @if(Session::has('success_message'))
-            <div class="alert alert-success">
-                <span class="glyphicon glyphicon-ok"></span>
-                {!! session('success_message') !!}
-
-                <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-
-            </div>
-        @endif
-        @if(Session::has('error_message'))
-            <div class="alert alert-success">
-                <span class="glyphicon glyphicon-ok"></span>
-                {!! session('error_message') !!}
-
-                <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-
-            </div>
-        @endif
-
-        @if(Session::has('errors'))
-            <div class="alert alert-danger">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                @foreach($errors->all() as $error)
-                    <div>{{ $error }}</div>
-                @endforeach
-            </div>
-        @endif
 
         <div class="login__forms">
 
@@ -84,6 +54,19 @@
 </div>
 
 <!--===== MAIN JS =====-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript"></script>
 <script src="js/login.js"></script>
+
+@if(Session::has('errors'))
+    <div class="alert alert-danger">
+
+        <script>
+            toastError()
+        </script>
+
+    </div>
+@endif
+
 </body>
 </html>

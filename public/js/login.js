@@ -5,22 +5,7 @@ const signUp = document.getElementById('sign-up'),
     loginUp = document.getElementById('login-up')
 
 
-signUp.addEventListener('click', ()=>{
-    // Remove classes first if they exist
-    loginIn.classList.remove('block')
-loginUp.classList.remove('none')
-
-// Add classes
-loginIn.classList.toggle('none')
-loginUp.classList.toggle('block')
-})
-
-signIn.addEventListener('click', ()=>{
-    // Remove classes first if they exist
-    loginIn.classList.remove('none')
-loginUp.classList.remove('block')
-
-// Add classes
-loginIn.classList.toggle('block')
-loginUp.classList.toggle('none')
-})
+function toastError(){
+    console.log("wwwwwwww")
+    toastr.error('Senha ou login estão errados')
+}
