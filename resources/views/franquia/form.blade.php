@@ -47,6 +47,13 @@
     </div>
 </div>
 
+    <div class="form-group {{ $errors->has('url') ? 'has-error' : '' }}">
+        <label for="slug" class="col-md-2 control-label text-bold">Url.:</label>
+        <div class="col-md-10">
+            <input class="form-control input-sm" name="slug" type="text" id="slug" value="{{ old('slug', isset($franquia->slug) ? $franquia->slug : null) }}" maxlength="100" placeholder="Url do subdomínio">
+        </div>
+    </div>
+
 
     <div class="col-lg-12">
         <h4 class="text-bold">Endereço</h4>

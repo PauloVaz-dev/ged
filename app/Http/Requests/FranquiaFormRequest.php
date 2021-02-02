@@ -38,6 +38,7 @@ class FranquiaFormRequest extends FormRequest
             'numero' => 'nullable|string|min:0|max:10',
             'complemento' => 'nullable|string|min:0|max:100',
             'is_active' => 'nullable|boolean',
+            'slug' => 'required|string|min:1|max:200',
         ];
 
         return $rules;
@@ -51,7 +52,7 @@ class FranquiaFormRequest extends FormRequest
      */
     public function getData()
     {
-        $data = $this->only(['nome', 'cpf_cnpj', 'contato', 'telefone', 'email', 'cidade', 'estado', 'endereco', 'cep', 'bairro', 'numero', 'complemento', 'is_active', 'base_preco_revenda_id']);
+        $data = $this->only(['nome', 'cpf_cnpj', 'contato', 'telefone', 'email', 'cidade', 'estado', 'endereco', 'cep', 'bairro', 'numero', 'complemento', 'is_active', 'base_preco_revenda_id', 'slug']);
         $data['is_active'] = $this->has('is_active');
         return $data;
     }

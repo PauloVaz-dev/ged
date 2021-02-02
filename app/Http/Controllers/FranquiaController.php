@@ -7,7 +7,6 @@ namespace Serbinario\Http\Controllers;
 
 use Serbinario\Entities\BasePrecoRevenda;
 use Serbinario\Entities\Instituicao;
-use Serbinario\Entities\Parametro;
 use Serbinario\Http\Controllers\Controller;
 use Serbinario\Http\Requests\FranquiaFormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -87,9 +86,6 @@ class FranquiaController extends Controller
         try {
             $data = $request->getData();
             $franquia = Instituicao::create($data);
-
-            //[RF006-RN003]:Toda franquia criada já se gera um parametro para ela
-            Parametro::create(['franquia_id' => $franquia->id]);
 
             return redirect()->route('franquia.franquia.edit', $franquia->id)
                 ->with('success_message', 'Cadastro realizado com sucesso!');
