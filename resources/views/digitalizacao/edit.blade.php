@@ -65,7 +65,7 @@
         <script>
             toastr.options.progressBar = true;
             toastr.options.positionClass = 'toast-top-right';
-            toastr.success('cadastro realizado com sucesso')
+            toastr.success('Cadastro realizado com sucesso')
         </script>
     @endif
 @stop
