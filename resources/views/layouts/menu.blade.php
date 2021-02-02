@@ -294,5 +294,7 @@
 
 <!-- END JAVASCRIPT -->
 @yield('javascript')
+
+@yield('toastmessages')
 </body>
 </html>

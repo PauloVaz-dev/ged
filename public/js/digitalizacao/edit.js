@@ -41,3 +41,9 @@ $(document).ready(function () {
 
 
 });
+
+function toastError(){
+    toastr.options.progressBar = true;
+    toastr.options.positionClass = 'toast-top-center';
+    toastr.success('Senha ou login estão errados')
+}

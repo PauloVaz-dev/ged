@@ -6,6 +6,5 @@ const signUp = document.getElementById('sign-up'),
 
 
 function toastError(){
-    console.log("wwwwwwww")
     toastr.error('Senha ou login estão errados')
 }

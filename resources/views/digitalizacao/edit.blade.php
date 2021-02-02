@@ -2,27 +2,6 @@
 
 @section('content')
 
-    @if(Session::has('success_message'))
-        <div class="alert alert-success">
-            <span class="glyphicon glyphicon-ok"></span>
-            {!! session('success_message') !!}
-
-            <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                <span aria-hidden="true">&times&times;</span>
-            </button>
-
-        </div>
-    @endif
-
-    @if($errors->any())
-        <div class="alert alert-danger">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times&times;</a>
-            @foreach($errors->all() as $error)
-                <div>{{ $error }}</div>
-            @endforeach
-        </div>
-    @endif
-
     <!-- BEGIN HORIZONTAL FORM -->
     <div class="row">
         <div class="col-lg-12">
@@ -65,3 +44,29 @@
     <script src="{{ asset('/js/digitalizacao/edit.js')}}" type="text/javascript"></script>
     <script src="{{ asset('/js/mascaras.js')}}" type="text/javascript"></script>
 @stop
+
+
+@section('toastmessages')
+
+    @if($errors->any())
+
+            @foreach($errors->all() as $error)
+                <script>
+                    toastr.options.progressBar = true;
+                    toastr.options.positionClass = 'toast-top-right';
+                    toastr.warning(' {{ $error }} ')
+                </script>
+
+            @endforeach
+
+    @endif
+
+    @if(Session::has('success_message'))
+        <script>
+            toastr.options.progressBar = true;
+            toastr.options.positionClass = 'toast-top-right';
+            toastr.success('cadastro realizado com sucesso')
+        </script>
+    @endif
+@stop
+

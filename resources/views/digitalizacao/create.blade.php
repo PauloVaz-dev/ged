@@ -4,7 +4,7 @@
 
 @section('content')
 
-    @if(Session::has('success_message'))
+   {{-- @if(Session::has('success_message'))
         <div class="alert alert-success">
             <span class="glyphicon glyphicon-ok"></span>
             {!! session('success_message') !!}
@@ -23,7 +23,7 @@
                 <div>{{ $error }}</div>
             @endforeach
         </div>
-    @endif
+    @endif--}}
 
     <!-- BEGIN HORIZONTAL FORM -->
     <div class="row">
@@ -59,6 +59,31 @@
 @endsection
 
 @section('javascript')
+    <script src="{{ asset('/js/digitalizacao/create.js')}}" type="text/javascript"></script>
     <script src="{{ asset('/js/mascaras.js')}}" type="text/javascript"></script>
+@stop
+
+@section('toastmessages')
+
+    @if($errors->any())
+
+            @foreach($errors->all() as $error)
+                <script>
+                    toastr.options.progressBar = true;
+                    toastr.options.positionClass = 'toast-top-right';
+                    toastr.warning(' {{ $error }} ')
+                </script>
+
+            @endforeach
+
+    @endif
+
+    @if(Session::has('success_message'))
+        <script>
+            toastr.options.progressBar = true;
+            toastr.options.positionClass = 'toast-top-right';
+            toastr.success('cadastro realizado com sucesso')
+        </script>
+    @endif
 @stop
 
