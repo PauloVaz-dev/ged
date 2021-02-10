@@ -154,8 +154,6 @@ class ModalidadeController extends Controller
      */
     public function update($id, DigitalizacaoFormRequest $request)
     {
-
-
         try {
 
             $data = $this->getData($request);

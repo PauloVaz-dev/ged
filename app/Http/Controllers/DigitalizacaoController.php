@@ -132,8 +132,14 @@ class DigitalizacaoController extends Controller
      */
     public function create($despesa_tipo)
     {
+        $userLogado = User::find(Auth::id());
+        if($userLogado->franquia->id === 1){
+            $secretarias = Secretaria::pluck('descricao','id')->all();
+        }else{
+            $secretarias = Secretaria::where('franquia_id', Auth::user()->franquia->id)->pluck('descricao','id')->all();
+        }
         $tipoDocs = TipoDocumento::pluck('descricao','id')->all();
-        return view('digitalizacao.create' , compact('despesa_tipo', 'tipoDocs'));
+        return view('digitalizacao.create' , compact('despesa_tipo', 'tipoDocs', 'secretarias'));
     }
 
     /**
