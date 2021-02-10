@@ -56,14 +56,14 @@
                     </div><!--end .row -->
                     <!-- END DATATABLE 1 -->
 
-
-
-
-                    <div class="card-actionbar">
-                        <div class="card-actionbar-row">
-                            <a href="{{ route('users.user.create') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Novo Usuário</a>
+                    @can('create.users')
+                        <div class="card-actionbar">
+                            <div class="card-actionbar-row">
+                                <a href="{{ route('users.user.create') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Novo Usuário</a>
+                            </div>
                         </div>
-                    </div>
+                    @endcan
+
                 </div><!--end .card -->
 
             </form>

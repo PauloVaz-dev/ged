@@ -53,6 +53,20 @@
         </div>
     </div>
 
+    <div class="form-group {{ $errors->has('secretaria_id') ? 'has-error' : '' }}">
+        <label for="franquia_id" class="col-md-2 control-label">Instituição.: *</label>
+        <div class="col-md-10">
+            <select class="form-control input-sm" id="franquia_id" name="secretaria_id">
+                <option value="" style="display: none;" {{ old('$secretaria_id', null) }} disabled selected>Selecione uma Secretaria</option>
+                @foreach ($secretarias as $key => $secretaria)
+                    <option value="{{ $key }}" {{ old('$secretaria_id', isset($digi->secretaria->id) ? $digi->secretaria->id : null) == $key ? 'selected' : '' }}>
+                        {{ $secretaria }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
     @if($digi->despesa_id == 1)
         @include ('digitalizacao.formLicitacao', ['digis' => $digi, ])
     @endif

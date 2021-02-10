@@ -71,7 +71,6 @@
 					</li>
 				</ul>
 			</div>
-
 			<!-- DropDown Menu superior direito -->
 			<div class="headerbar-right">
 				<ul  class="header-nav header-nav-profile">
@@ -85,8 +84,6 @@
 
 						</a>
 					</li><!--end .dropdown -->
-
-
 					<li id="alert-solar" class="dropdown hidden-sm">
 						<a href="javascript:void(0);" class="btn btn-icon-toggle btn-default" data-toggle="dropdown">
 							<i class="fa fa-bell"></i>
@@ -137,19 +134,13 @@
 
 	<!-- BEGIN CONTENT-->
 	<div id="content">
-
 		<!-- BEGIN BLANK SECTION -->
 		<section>
 			<div class="section-body contain-lg">
-
 				@yield('content')
-
-
 			</div><!--end .section-body -->
 		</section>
 		<!-- BEGIN BLANK SECTION -->
-
-
 	</div><!--end #content-->
 	<!-- END CONTENT -->
 @if(Auth::check())
@@ -162,23 +153,9 @@
 					</a>
 				</div>
 			</div>
-
-
-
 			<div class="menubar-scroll-panel">
-
-
-
 				<!-- BEGIN MAIN MENU -->
 				<ul id="main-menu" class="gui-controls">
-
-
-
-
-					<!-- BEGIN DASHBOARD -->
-					<!-- END DASHBOARD -->
-
-
 					<!-- BEGIN PAGES -->
 					<li class="gui-folder">
 						<a>
@@ -186,27 +163,25 @@
 							<span class="title">Controle</span>
 						</a>
 						<!--start submenu -->
-
 						<ul>
-							<li><a href="{{ route('digitalizacao.index') }}" class="active"><span class="title">Documentos</span></a></li>
-
-
-
+							@can('view.digitalizacao')
+								<li><a href="{{ route('digitalizacao.index') }}" class="active"><span class="title">Documentos</span></a></li>
+							@endcan
+							@can('create.digitalizacao')
 							<li class="gui-folder">
 								<a href="javascript:void(0);">
 									<span class="title">Criar Tipos de Despesas</span>
 								</a>
-								<!--start submenu -->
-								<ul>
-									<li><a href="/digitalizacao/create/despesa" class="active"><span class="title">Despesas</span></a></li>
-									<li><a href="/digitalizacao/create/licitacao" class="active"><span class="title">Licitação</span></a></li>
-									<li><a href="/digitalizacao/create/folha" class="active"><span class="title">Folha</span></a></li>
-									<li><a href="/digitalizacao/create/lei" class="active"><span class="title">Lei</span></a></li>
-									<li><a href="/digitalizacao/create/outros" class="active"><span class="title">Outros</span></a></li>
+									<ul>
+										<li><a href="/digitalizacao/create/despesa" class="active"><span class="title">Despesas</span></a></li>
+										<li><a href="/digitalizacao/create/licitacao" class="active"><span class="title">Licitação</span></a></li>
+										<li><a href="/digitalizacao/create/folha" class="active"><span class="title">Folha</span></a></li>
+										<li><a href="/digitalizacao/create/lei" class="active"><span class="title">Lei</span></a></li>
+										<li><a href="/digitalizacao/create/outros" class="active"><span class="title">Outros</span></a></li>
 
-								</ul><!--end /submenu -->
-
+									</ul><!--end /submenu -->
 							</li><!--end /menu-li -->
+							@endcan
 
 							<li class="gui-folder">
 								<a href="javascript:void(0);">
@@ -214,29 +189,35 @@
 								</a>
 								<!--start submenu -->
 								<ul>
-									<li><a href="{{ route('franquia.franquia.index') }}" class="active"><span class="title">Instituição</span></a></li>
-									<li><a href="{{ route('secretaria.index') }}" class="active"><span class="title">Secretarias</span></a></li>
-									<li><a href="{{ route('users.user.index') }}" class="active"><span class="title">Usuários</span></a></li>
-                                    <li><a href="{{ route('modalidade.index') }}" class="active"><span class="title">Modalidade</span></a></li>
+									@if(Auth::user()->franquia->id == 1)
+										<li><a href="{{ route('franquia.franquia.index') }}" class="active"><span class="title">Instituição</span></a></li>
+									@endif
+
+									@can('view.secretatia')
+										<li><a href="{{ route('secretaria.index') }}" class="active"><span
+														class="title">Secretarias</span></a></li>
+									@endcan
+									@can('view.roles')
+										<li><a href="{{ route('roles.role.index') }}" class="active"><span
+														class="title">Grupos</span></a></li>
+									@endcan
+									@can('view.users')
+										<li><a href="{{ route('users.user.index') }}" class="active"><span
+														class="title">Usuários</span></a></li>
+									@endcan
+									@can('view.modalidade')
+										<li><a href="{{ route('modalidade.index') }}" class="active"><span
+														class="title">Modalidade</span></a></li>
+									@endcan
 
 								</ul><!--end /submenu -->
-
 							</li><!--end /menu-li -->
-
-
-
 						</ul><!--end /submenu -->
-
-
 					</li><!--end /menu-li -->
 					<!-- END FORMS -->
-
-
 				</ul><!--end .main-menu -->
 				<!-- END MAIN MENU -->
-
 			</div><!--end .menubar-scroll-panel-->
-
 		</div><!--end #menubar-->
 		<!-- END MENUBAR -->
 	@endif

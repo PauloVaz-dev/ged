@@ -54,6 +54,26 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="form-group">
+            <label for="file" class="col-sm-2 control-label text-bold">Logo.:</label>
+            <div class="col-md-4">
+                <div class="checkbo">
+                    <label for="file">
+                        <input class="form-control input-sm" name="file" type="file" value="{{ old('file', isset($franquia->file) ? $franquia->file : "") }}">
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    @if($franquia->file)
+                        <a target="_blank" href="{{ url("/{$franquia->file}") }}" class="btn btn-info btn-sm" role="button">Link Arquivo</a>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="col-lg-12">
         <h4 class="text-bold">Endereço</h4>

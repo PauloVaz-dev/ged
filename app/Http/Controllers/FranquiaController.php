@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Auth;
 use Serbinario\User;
 use Yajra\DataTables\DataTables;
 use Exception;
+use Serbinario\Traits\UtilFiles;
 
 class FranquiaController extends Controller
 {
+    use UtilFiles;
     private $token;
 
     /**
@@ -85,6 +87,9 @@ class FranquiaController extends Controller
     public function store(FranquiaFormRequest $request){
         try {
             $data = $request->getData();
+
+
+
             $franquia = Instituicao::create($data);
 
             return redirect()->route('franquia.franquia.edit', $franquia->id)
@@ -136,6 +141,14 @@ class FranquiaController extends Controller
             $data = $request->getData();
             
             $franquia = Instituicao::findOrFail($id);
+
+            if($request->hasFile('file')){
+                $file = $request->file('file');
+
+                $arquivo = $this->ImageStoreV2($file, 'file', '');
+
+                $data['file'] = $arquivo;
+            }
 
             $user = User::find(Auth::id());
             //dd($user);

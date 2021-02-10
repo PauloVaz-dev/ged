@@ -32,19 +32,14 @@
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('role') ? 'has-error' : '' }}">
-        <label for="role" class="col-md-2 control-label">Permissão.: *</label>
+    <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+        <label for="password" class="col-md-2 control-label">Grupo.: *</label>
         <div class="col-md-10">
-            <select class="form-control input-sm" id="role" name="role">
-                <option value="" style="display: none;" {{ old('$user->roles[0]->id', null) }} disabled selected>Selecione uma Permissão</option>
-                @foreach ($roles as $key => $role)
-                    <option value="{{ $key }}" {{ old('role', isset($user->roles[0]->id) ? $user->roles[0]->id : null) == $key ? 'selected' : '' }}>
-                        {{ $role }}
-                    </option>
-                @endforeach
-            </select>
+            @foreach ($roles as $key => $role)
 
-            {!! $errors->first('role', '<p class="help-block">:message</p>') !!}
+                <input id="permissions" class="" name="roles[]" type="checkbox" value="{{ $key  }}"  {{ in_array($key, $userRole) ? 'checked' : '' }}>
+                {{ Form::label($role, ucfirst($role)) }}<br>
+            @endforeach
         </div>
     </div>
 
@@ -59,8 +54,6 @@
                     </option>
                 @endforeach
             </select>
-
-            {!! $errors->first('franquia_id', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
 

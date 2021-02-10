@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Serbinario\Entities\Digitalizacao;
 use Serbinario\Entities\DigitalizacaoFile;
+use Serbinario\Entities\Secretaria;
 use Serbinario\Entities\TipoDocumento;
 use Serbinario\Http\Requests\DigitalizacaoFormRequest;
+use Serbinario\User;
 use Yajra\DataTables\DataTables;
 use Exception;
 use Serbinario\Traits\UtilFiles;
@@ -19,6 +21,7 @@ class DigitalizacaoController extends Controller
 {
     use UtilFiles;
     private $token;
+    private $user;
 
     /**
      * Create a new controller instance.
@@ -28,6 +31,7 @@ class DigitalizacaoController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->user = User::find(Auth::id());
     }
 
     /**
@@ -48,10 +52,12 @@ class DigitalizacaoController extends Controller
      */
     public function grid(Request $request)
     {
+
         $this->token = csrf_token();
         #Criando a consulta
         $rows = \DB::table('digitalizacao')
             ->leftJoin('despesas', 'despesas.id', '=', 'digitalizacao.despesa_id')
+            ->leftJoin('users', 'users.id', '=', 'digitalizacao.user_id')
             ->select([
                 'digitalizacao.id',
                 'digitalizacao.descricao',
@@ -65,6 +71,11 @@ class DigitalizacaoController extends Controller
                 'digitalizacao.objeto_licitacao',
                 'digitalizacao.data_homologa'
             ]);
+
+        $user = User::find(Auth::id());
+        if($user->franquia->id != 1){
+            $rows->where('users.franquia_id', '=', $user->franquia->id);
+        }
 
         #Editando a grid
         return Datatables::of($rows)
@@ -100,18 +111,17 @@ class DigitalizacaoController extends Controller
                 }
             })
 
-
             ->addColumn('action', function ($row) {
-            return '<form id="' . $row->id   . '" method="POST" action="digitalizacao/' . $row->id   . '/destroy" accept-charset="UTF-8">
-                            <input name="_method" value="DELETE" type="hidden">
-                            <input name="_token" value="'.$this->token .'" type="hidden">
-                            <div class="btn-group btn-group-xs pull-right" role="group">                              
-                                <a href="digitalizacao/'.$row->id.'/edit" class="btn btn-primary" title="Edit">
+            $acao = '<div class="btn-group btn-group-xs pull-right" role="group">';
+
+            $user =  Auth::user();
+            if($user->hasPermissionTo('update.digitalizacao')) {
+                $acao .= '<a href="digitalizacao/' . $row->id . '/edit" class="btn btn-primary" title="Edit">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                </a>
-                               
-                        </form>
-                        ';
+                      </a>';
+            }
+             $acao .= '               </div>';
+                return $acao;
         })->make(true);
     }
 
@@ -137,20 +147,10 @@ class DigitalizacaoController extends Controller
     {
 
         try {
-
-            //$this->affirm($request);
             $data = $this->getData($request);
-            //dd($request->all());
             $data['despesa_id'] = $request->get('despesa_id');
-
-            //dd($data);
             $data['user_id'] = \Auth::id();
-
-
             $arquivo = $this->ImageStore($request, 'arquivo', '');
-
-
-
             $digi = Digitalizacao::create($data);
 
             DigitalizacaoFile::create(['digitalizacao_id' => $digi->id, 'file' => $arquivo ]);
@@ -189,13 +189,20 @@ class DigitalizacaoController extends Controller
      */
     public function edit($id)
     {
+        $userLogado = User::find(Auth::id());
+        if($userLogado->franquia->id === 1){
+            $secretarias = Secretaria::pluck('descricao','id')->all();
+        }else{
+            $secretarias = Secretaria::where('franquia_id', Auth::user()->franquia->id)->pluck('descricao','id')->all();
+        }
+
         $tipoDocs = TipoDocumento::pluck('descricao','id')->all();
-        $digi = Digitalizacao::with('files', 'despesa', 'tipoDoc')->find($id);
+        $digi = Digitalizacao::with('files', 'despesa', 'tipoDoc', 'secretaria')->find($id);
+
 
         $roles = \Spatie\Permission\Models\Role::pluck('name','id')->all();
-
-        //dd($user->roles[0]->id);
-        return view('digitalizacao.edit', compact('digi','roles', 'franquias', 'tipoDocs'));
+        //dd($digi);
+        return view('digitalizacao.edit', compact('digi','roles', 'franquias', 'tipoDocs', 'secretarias'));
 
     }
 
@@ -211,27 +218,20 @@ class DigitalizacaoController extends Controller
      */
     public function update($id, DigitalizacaoFormRequest $request)
     {
-
-
         try {
-
             $data = $this->getData($request);
             $digi = Digitalizacao::with('files')->findOrFail($id);
 
             $difiFiles = $digi->files()->get()->toArray();
-
             $files = $request->file('arquivo');
 
             if(isset($files)){
                 foreach($files as $key => $file)
                 {
-                    //dd($file);
                     $arquivo = $this->ImageStoreV2($file, 'arquivo', '');
-                    //dd($arquivo);
                     $contratos = $digi->files()->create([
                         'file' => $arquivo,
                         'digitalizacao_id' => $digi->id,
-
                     ]);
                 }
             }

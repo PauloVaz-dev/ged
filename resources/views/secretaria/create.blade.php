@@ -29,7 +29,7 @@
             <form method="POST" action="{{ route('secretaria.store') }}" accept-charset="UTF-8" id="create_user_form" name="create_user_form" class="form-horizontal">
                 <div class="card">
                     <div class="card-head style-primary">
-                        <header>Novo usuário</header>
+                        <header>Nova Secretaria</header>
                         <div class="tools">
                             <div class="btn-group">
                                 <a href="{{ route('secretaria.index') }}" class="btn btn-primary" title="Todds">

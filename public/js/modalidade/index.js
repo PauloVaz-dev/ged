@@ -26,7 +26,13 @@ $(document).ready(function () {
 
     console.log("index");
     var table = $('#modalidades').DataTable({
+        "stateSave": false,
         "dom": 'lCfrtip',
+        "colVis": {
+            "buttonText": "Colunas",
+            "overlayFade": 0,
+            "align": "right"
+        },
         processing: true,
         serverSide: true,
         bFilter: true,
@@ -40,8 +46,17 @@ $(document).ready(function () {
         columns: [
             {data: 'id', name: 'id'},
             {data: 'descricao', name: 'descricao'},
-            {data: 'ativo', name: 'ativo'},
-            {data: 'action', name: 'action', orderable: false, searchable: false}
+            {data: 'ativo', name: 'ativo', visible: true, width: '60px',
+                "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                    if(oData.ativo == 1){
+                        $(nTd).html("    <span class=\"badge badge-primary\">"+ "Ativo</span>")
+                    }else{
+                        $(nTd).html("    <span class=\"badge badge-danger\">"+ "Desativado</span>")
+                    }
+                }
+
+            },
+            {data: 'action', name: 'action', orderable: false, width: '60px', searchable: false}
         ]
     });
 

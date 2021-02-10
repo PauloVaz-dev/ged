@@ -25,32 +25,33 @@ $(document).ready(function () {
     });
 
     console.log("index");
-    var table = $('#secretarias').DataTable({
+    var table = $('#roles').DataTable({
         "stateSave": false,
         "dom": 'lCfrtip',
-        "order": [],
         "colVis": {
             "buttonText": "Colunas",
             "overlayFade": 0,
             "align": "right"
         },
+        "searching": false,
+        "bLengthChange": false,
         processing: true,
         serverSide: true,
         bFilter: true,
         order: [[ 1, "asc" ]],
         ajax: {
-            url: "/index.php/secretaria/grid",
+            url: "/index.php/roles/grid",
             data: function (d) {
 
             }
         },
         columns: [
-            {data: 'id', name: 'id', visible: false},
-            {data: 'descricao', name: 'descricao'},
-            {data: 'nome', name: 'franquias.nome'},
-            {data: 'ativo', name: 'ativo', visible: true, width: '60px',
+            {data: 'id', name: 'id', visible: false,},
+            {data: 'name', name: 'name'},
+            {data: 'nome', name: 'franquia,nome'},
+            {data: 'is_active', name: 'is_active', visible: true, width: '60px',
                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                    if(oData.ativo == 1){
+                    if(oData.is_active == 1){
                         $(nTd).html("    <span class=\"badge badge-primary\">"+ "Ativo</span>")
                     }else{
                         $(nTd).html("    <span class=\"badge badge-danger\">"+ "Desativado</span>")

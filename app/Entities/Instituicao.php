@@ -43,7 +43,8 @@ class Instituicao extends Model
         'is_active',
         'base_preco_revenda_id',
         'franqueadora',
-        'slug'
+        'slug',
+        'file'
     ];
 
     /**

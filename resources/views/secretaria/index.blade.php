@@ -24,7 +24,7 @@
                 {{ csrf_field() }}
                 <div class="card">
                     <div class="card-head style-primary">
-                        <header>Lista de Secreariass</header>
+                        <header>Lista de Secretarias</header>
                         <div class="tools">
                             <div class="btn-group">
                                     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
@@ -41,7 +41,8 @@
                                         <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Descrição</th>
+                                            <th>Secretaria</th>
+                                            <th>Instituição</th>
                                             <th>Ativo</th>
                                             <th>Ação</th>
                                         </tr>
@@ -57,9 +58,11 @@
 
 
                     <div class="card-actionbar">
-                        <div class="card-actionbar-row">
-                            <a href="{{ route('secretaria.create') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Nova Secretaria</a>
-                        </div>
+                        @can('create.secretaria')
+                            <div class="card-actionbar-row">
+                                <a href="{{ route('secretaria.create') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Nova Secretaria</a>
+                            </div>
+                        @endcan
                     </div>
                 </div><!--end .card -->
 

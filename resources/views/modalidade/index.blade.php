@@ -55,13 +55,15 @@
                     <!-- END DATATABLE 1 -->
 
 
-
-
-                    <div class="card-actionbar">
-                        <div class="card-actionbar-row">
-                            <a href="{{ route('modalidade.create') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Novo Usuário</a>
+                    @can('create.modalidade')
+                        <div class="card-actionbar">
+                            <div class="card-actionbar-row">
+                                <a href="{{ route('modalidade.create') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Novo Usuário</a>
+                            </div>
                         </div>
-                    </div>
+                    @endcan
+
+
                 </div><!--end .card -->
 
             </form>

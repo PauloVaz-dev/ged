@@ -225,6 +225,42 @@ Route::group(
 
 });
 
+Route::group(
+    [
+        'prefix' => 'roles',
+    ], function () {
+
+    Route::get('/', 'RolesController@index')
+        ->name('roles.role.index');
+
+    Route::get('/create','RolesController@create')
+        ->name('roles.role.create');
+
+    Route::get('/show/{role}','RolesController@show')
+        ->name('roles.role.show')
+        ->where('id', '[0-9]+');
+
+    Route::get('/grid', 'RolesController@grid')
+        ->name('roles.role.grid');
+
+
+    Route::get('/{user}/edit','RolesController@edit')
+        ->name('roles.role.edit')
+        ->where('id', '[0-9]+');
+
+    Route::post('/', 'RolesController@store')
+        ->name('roles.role.store');
+
+    Route::put('user/{user}', 'RolesController@update')
+        ->name('roles.role.update')
+        ->where('id', '[0-9]+');
+
+    Route::delete('/{user}/destroy','RolesController@destroy')
+        ->name('roles.role.destroy')
+        ->where('id', '[0-9]+');
+
+});
+
 
 
 Route::group(

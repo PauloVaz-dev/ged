@@ -198,6 +198,15 @@ img{
     margin-top: 2rem;
 }
 
+.login__prefeitura{
+    max-width: 60%;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+
+
 .login__social-icon{
     font-size: 1.5rem;
     color: var(--first-color-dark);

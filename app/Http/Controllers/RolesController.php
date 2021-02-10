@@ -6,21 +6,16 @@ namespace Serbinario\Http\Controllers;
 //meu teste
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\AssignOp\Mod;
-use Serbinario\Entities\Digitalizacao;
-use Serbinario\Entities\DigitalizacaoFile;
-use Serbinario\Entities\Modalidade;
-use Serbinario\Entities\TipoDocumento;
-use Serbinario\Http\Requests\DigitalizacaoFormRequest;
-use Serbinario\Http\Requests\ModalidadeFormRequest;
+use DB;
 use Yajra\DataTables\DataTables;
 use Exception;
-use Serbinario\Traits\UtilFiles;
+use Serbinario\User;
 
-class ModalidadeController extends Controller
+class RolesController extends Controller
 {
-    use UtilFiles;
     private $token;
 
     /**
@@ -40,7 +35,7 @@ class ModalidadeController extends Controller
      */
     public function index()
     {
-        return view('modalidade.index');
+        return view('roles.index');
     }
 
     /**
@@ -49,31 +44,40 @@ class ModalidadeController extends Controller
      * @return Illuminate\View\View
      * @throws Exception
      */
-    public function grid(Request $request)
+    public function grid()
     {
         $this->token = csrf_token();
         #Criando a consulta
-        $rows = \DB::table('modalidades')
+        $rows = \DB::table('roles')
+            ->leftJoin('franquias', 'franquias.id', '=', 'roles.franquia_id')
             ->select([
-                'id',
-                'descricao',
-                'ativo'
+                'roles.id',
+                'roles.name',
+                'roles.is_active',
+                'franquias.nome'
             ]);
+
+        $user = User::find(Auth::id());
+        if($user->franquia->id != 1){
+            $rows->where('franquia_id', '=', $user->franquia->id);
+        }
 
         #Editando a grid
         return Datatables::of($rows)
             ->addColumn('action', function ($row) {
+
+
                 $acao = '<div class="btn-group btn-group-xs pull-right" role="group">';
 
                 $user =  Auth::user();
-                if($user->hasPermissionTo('update.modalidade')) {
-                    $acao .= '<a href="modalidade/' . $row->id . '/edit" class="btn btn-primary" title="Edit">
+                if($user->hasPermissionTo('update.roles')) {
+                    $acao .= '<a href="roles/' . $row->id . '/edit" class="btn btn-primary" title="Edit">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                       </a>';
                 }
                 $acao .= '               </div>';
                 return $acao;
-            })->make(true);
+        })->make(true);
     }
 
     /**
@@ -83,7 +87,14 @@ class ModalidadeController extends Controller
      */
     public function create()
     {
-        return view('modalidade.create');
+        $permission = Permission::get();
+        $rolePermissions = [];
+        $permissionGroup = $permission->groupBy(function ($member) {
+            return $member->model;
+        })->all();
+        return view('roles.create',compact('permission', 'rolePermissions', 'permissionGroup'));
+
+        return view('users.create', compact('roles', 'franquias'));
     }
 
     /**
@@ -93,20 +104,18 @@ class ModalidadeController extends Controller
      *
      * @return Illuminate\Http\RedirectResponse | Illuminate\Routing\Redirector
      */
-    public function store(ModalidadeFormRequest $request)
+    public function store(Request $request)
     {
-
         try {
-            //$this->affirm($request);
-            $data = $this->getData($request);
-            $digi = Modalidade::create($data);
+            $role = Role::create(['name' => $request->input('name'), 'franquia_id' => Auth::user()->franquia->id]);
+            $role->syncPermissions($request->input('permission'));
 
-            return redirect()->route('modalidade.edit', $digi->id)
+            return redirect()->route('roles.role.edit', $role->id)
                 ->with('success_message', 'Cadastro atualizado com sucesso!');
 
 
         } catch (Exception $e) {
-            //dd($e);
+           // dd($e);
             return back()->withInput()
                 ->withErrors(['error_message' => $e->getMessage()]);
         }
@@ -135,10 +144,24 @@ class ModalidadeController extends Controller
      */
     public function edit($id)
     {
-        $modalidade = Modalidade::find($id);
+        $userLogado = User::find(Auth::id());
+        if($userLogado->franquia->id === 1){
+            $role = Role::find($id);
+        }else{
+            $role = Role::where('franquia_id', Auth::user()->franquia->id)->find($id);
+        }
 
-        //dd($user->roles[0]->id);
-        return view('modalidade.edit', compact('modalidade'));
+        $permission = Permission::get();
+        $permissionGroup = $permission->groupBy(function ($member) {
+            return $member->model;
+        })->all();
+
+
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
+            ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+            ->all();
+        //dd($permission);
+        return view('roles.edit', compact('user', 'role', 'permission', 'rolePermissions', 'permissionGroup'));
 
     }
 
@@ -152,18 +175,17 @@ class ModalidadeController extends Controller
      * Exemplos
      * https://scotch.io/tutorials/user-authorization-in-laravel-54-with-spatie-laravel-permission
      */
-    public function update($id, DigitalizacaoFormRequest $request)
+    public function update($id, Request $request)
     {
-
-
         try {
 
-            $data = $this->getData($request);
-            $modalidade = Modalidade::findOrFail($id);
+            $role = Role::find($id);
+            $role->name = $request->input('name');
+            $role->save();
 
-            $modalidade->update($data);
+            $role->syncPermissions($request->input('permission'));
 
-            return redirect()->route('modalidade.edit', $modalidade->id)
+            return redirect()->route('roles.role.edit', $role->id)
                 ->with('success_message', 'Cadastro atualizado com sucesso!');
 
         } catch (Exception $e) {
@@ -182,11 +204,11 @@ class ModalidadeController extends Controller
     public function destroy($id)
     {
         try {
-            $alert = Alert::findOrFail($id);
-            $alert->delete();
+            $role = Role::find($id);
+            $role->delete();
 
-            return redirect()->route('alert.index')
-                ->with('success_message', 'Alerta deletado com sucesso');
+            return redirect()->route('roles.rule.index')
+                ->with('success_message', 'Grupo deletado com sucesso');
 
         } catch (Exception $e) {
             return back()->withInput()
@@ -200,13 +222,9 @@ class ModalidadeController extends Controller
      * @param Illuminate\Http\Request\Request $request
      * @return array
      */
-      protected function getData(Request $request)
-        {
-        $data = $request->only([
-            'descricao',
-            'ativo'
-
-        ]);
+    protected function getData(Request $request)
+    {
+        $data = $request->only(['name', 'email', 'password', 'role', 'franquia_id']);
 
         return $data;
     }

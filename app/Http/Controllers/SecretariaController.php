@@ -6,18 +6,14 @@ namespace Serbinario\Http\Controllers;
 //meu teste
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\AssignOp\Mod;
-use Serbinario\Entities\Digitalizacao;
-use Serbinario\Entities\DigitalizacaoFile;
-use Serbinario\Entities\Modalidade;
 use Serbinario\Entities\Secretaria;
-use Serbinario\Entities\TipoDocumento;
 use Serbinario\Http\Requests\DigitalizacaoFormRequest;
 use Serbinario\Http\Requests\ModalidadeFormRequest;
 use Yajra\DataTables\DataTables;
 use Exception;
 use Serbinario\Traits\UtilFiles;
+use Illuminate\Support\Facades\Auth;
+use Serbinario\User;
 
 class SecretariaController extends Controller
 {
@@ -55,27 +51,32 @@ class SecretariaController extends Controller
         $this->token = csrf_token();
         #Criando a consulta
         $rows = \DB::table('secretarias')
+            ->leftJoin('franquias', 'franquias.id', '=', 'secretarias.franquia_id')
             ->select([
-                'id',
+                'secretarias.id',
+                'franquias.nome',
                 'descricao',
                 'ativo'
             ]);
 
+        $user = User::find(Auth::id());
+        if($user->franquia->id != 1){
+            $rows->where('secretarias.franquia_id', '=', $user->franquia->id);
+        }
+
         #Editando a grid
         return Datatables::of($rows)
-
-
             ->addColumn('action', function ($row) {
-            return '<form id="' . $row->id   . '" method="POST" action="secretaria/' . $row->id   . '/destroy" accept-charset="UTF-8">
-                            <input name="_method" value="DELETE" type="hidden">
-                            <input name="_token" value="'.$this->token .'" type="hidden">
-                            <div class="btn-group btn-group-xs pull-right" role="group">                              
-                                <a href="secretaria/'.$row->id.'/edit" class="btn btn-primary" title="Edit">
+                $acao = '<div class="btn-group btn-group-xs pull-right" role="group">';
+
+                $user =  Auth::user();
+                if($user->hasPermissionTo('update.secretaria')) {
+                    $acao .= '<a href="secretaria/' . $row->id . '/edit" class="btn btn-primary" title="Edit">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                </a>
-                               
-                        </form>
-                        ';
+                      </a>';
+                }
+                $acao .= '               </div>';
+                return $acao;
         })->make(true);
     }
 
@@ -99,8 +100,9 @@ class SecretariaController extends Controller
     public function store(ModalidadeFormRequest $request)
     {
         try {
-            //$this->affirm($request);
             $data = $this->getData($request);
+            $data['franquia_id'] = Auth::user()->franquia->id;
+
             $secretaria = Secretaria::create($data);
             return redirect()->route('secretaria.edit', $secretaria->id)
                 ->with('success_message', 'Cadastro atualizado com sucesso!');

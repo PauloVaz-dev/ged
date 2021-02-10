@@ -27,7 +27,7 @@
 <!-- BEGIN HORIZONTAL FORM -->
     <div class="row">
         <div class="col-lg-12">
-            <form method="POST" action="{{ route('franquia.franquia.store') }}" accept-charset="UTF-8" id="create_franquia_form" name="create_franquia_form" class="form-horizontal">
+            <form method="POST" action="{{ route('franquia.franquia.store') }}" accept-charset="UTF-8" id="create_franquia_form" name="create_franquia_form" class="form-horizontal" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-head style-primary">
                         <header>Nova Instituição</header>

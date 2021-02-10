@@ -29,7 +29,8 @@ class Secretaria extends Model
      */
     protected $fillable = [
         'descricao',
-        'ativo'
+        'ativo',
+        'franquia_id'
     ];
 
     /**
@@ -45,5 +46,10 @@ class Secretaria extends Model
      * @var array
      */
     protected $casts = [];
+
+    public function franquia()
+    {
+        return $this->hasOne('Serbinario\Entities\Instituicao','id','franquia_id');
+    }
 
 }

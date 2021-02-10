@@ -26,16 +26,16 @@
     <!-- BEGIN HORIZONTAL FORM -->
         <div class="row">
             <div class="col-lg-12">
-                <form method="POST" action="{{ route('franquia.franquia.update', $franquia->id) }}" accept-charset="UTF-8" id="edit_franquia_form" name="edit_franquia_form" class="form-horizontal" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('roles.role.update', $role->id) }}" accept-charset="UTF-8" id="edit_franquia_form" name="edit_franquia_form" class="form-horizontal">
                     <input name="_method" type="hidden" value="PUT">
                     {{ csrf_field() }}
                     <div class="card">
                         <div class="card-head style-primary">
-                            <header>Editar Instituição</header>
+                            <header>Editar Grupo</header>
                             <div class="tools">
                                 <div class="btn-group">
                                     @role('super-admin')
-                                    <a href="{{ route('franquia.franquia.index') }}" class="btn btn-primary" title="Show All Franquia">
+                                    <a href="{{ route('roles.role.index') }}" class="btn btn-primary" title="Show All Franquia">
                                         <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                                     </a>
                                     <a href="{{ route('franquia.franquia.create') }}" class="btn btn-primary" title="Create New Franquia">
@@ -46,11 +46,11 @@
                             </div>
                         </div>
 
-                        @include ('franquia.form', ['franquia' => $franquia, ])
+                        @include ('roles.form', ['role' => $role, 'permissionGroup' => $permissionGroup ])
 
                         <div class="card-actionbar">
                             <div class="card-actionbar-row">
-                                <a href="{{ route('franquia.franquia.index') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Voltar</a>
+                                <a href="{{ route('roles.role.index') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Voltar</a>
                                 <input class="btn btn-primary" type="submit" value="Atualizar">
                             </div>
                         </div>

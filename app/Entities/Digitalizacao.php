@@ -176,7 +176,8 @@ class Digitalizacao extends Model
         return $this->hasOne('Serbinario\Entities\TipoDocumento','id','tipodoc_id');
     }
 
-
-
+    public function secretaria(){
+        return $this->hasOne('Serbinario\Entities\Secretaria','id','secretaria_id');
+    }
 
 }
