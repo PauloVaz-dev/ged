@@ -64,6 +64,16 @@
                                         <option value="conta">Conta</option>
                                         <option value="data_empenho">Data Empenho</option>
                                         <option value="data_homologa">Data Homologa</option>
+                                        <option value="data_docto">Data Documento</option>
+                                        <option value="data_publica">Data Publicação</option>
+                                        <option value="data_lei">Data Lei</option>
+                                        <option value="data_admissao">Data Admissão</option>
+                                        <option value="data_pagto">Data Pagamento</option>
+
+                                        
+
+
+
 
 
 
