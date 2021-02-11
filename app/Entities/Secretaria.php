@@ -52,4 +52,6 @@ class Secretaria extends Model
         return $this->hasOne('Serbinario\Entities\Instituicao','id','franquia_id');
     }
 
+
+
 }

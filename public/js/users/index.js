@@ -41,7 +41,8 @@ $(document).ready(function () {
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
-            {data: 'nome', name: 'franquias.nome'},
+            {data: 'secretaria', name: 'secretarias.descricao'},
+            {data: 'nome', name: 'franquias.nome' , visible: false},
             {data: 'is_active', name: 'is_active', visible: true,
                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                     if(oData.is_active == 1){

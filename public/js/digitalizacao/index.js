@@ -34,11 +34,9 @@ $(document).ready(function () {
             url: "/index.php/digitalizacao/grid",
             data: function (d) {
                 d.descricao = document.getElementById('descricao').value,
-                d.numero_processo = document.getElementById('numero_processo').value,
-                d.competencia = document.getElementById('competencia').value,
-                d.convenio = document.getElementById('convenio').value,
-                d.conta = document.getElementById('conta').value,
-                d.numero_licitacao = document.getElementById('numero_licitacao').value
+                d.data_ini = dateToEN(document.getElementById('data_ini').value),
+                d.data_fim = dateToEN(document.getElementById('data_fim').value),
+                d.filtro_por = $('select[name=filtro_por] option:selected').val();
                 d.despesa_id = $('select[name=despesa_id] option:selected').val();
             }
         },
@@ -57,7 +55,12 @@ $(document).ready(function () {
             {data: 'convenio', name: 'digitalizacao.convenio', visible: true},
             {data: 'conta', name: 'digitalizacao.conta', visible: true},
             {data: 'numero_licitacao', name: 'digitalizacao.numero_licitacao', visible: true},
+            {data: 'secretaria', name: 'secretarias.secretaria', visible: false},
             {data: 'action', name: 'action', orderable: false, searchable: false, width: '60px'}
+
+
+
+
         ]
     });
 

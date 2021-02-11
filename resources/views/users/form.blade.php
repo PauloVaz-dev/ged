@@ -43,11 +43,25 @@
         </div>
     </div>
 
+    <div class="form-group {{ $errors->has('secretaria_id') ? 'has-error' : '' }}">
+        <label for="franquia_id" class="col-md-2 control-label">Secretaria.: *</label>
+        <div class="col-md-10">
+            <select class="form-control input-sm" id="franquia_id" name="secretaria_id">
+                <option value="" style="display: none;" {{ old('$secretaria_id', null) }} disabled selected>Selecione uma Secretaria</option>
+                @foreach ($secretarias as $key => $secretaria)
+                    <option value="{{ $key }}" {{ old('$secretaria_id', isset($user->secretaria->id) ? $user->secretaria->id : null) == $key ? 'selected' : '' }}>
+                        {{ $secretaria }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
     <div class="form-group {{ $errors->has('franquia_id') ? 'has-error' : '' }}">
         <label for="franquia_id" class="col-md-2 control-label">Instituição.: *</label>
         <div class="col-md-10">
             <select class="form-control input-sm" id="franquia_id" name="franquia_id">
-                <option value="" style="display: none;" {{ old('$user->roles[0]->id', null) }} disabled selected>Selecione uma Franquia</option>
+                <option value="" style="display: none;" {{ old('$user->roles[0]->id', null) }} disabled selected>Selecione uma Prefeitura</option>
                 @foreach ($franquias as $key => $franquia)
                     <option value="{{ $key }}" {{ old('franquia_id', isset($user->franquia->id) ? $user->franquia->id : null) == $key ? 'selected' : '' }}>
                         {{ $franquia }}

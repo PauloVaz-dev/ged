@@ -167,7 +167,7 @@ Route::group(
     ], function () {
 
     Route::get('/edit','SecretariaController@edit')
-        ->name('modalidade.edit')
+        ->name('secretaria.edit')
         ->where('id', '[0-9]+');
 
     Route::get('/', 'SecretariaController@index')

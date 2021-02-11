@@ -44,7 +44,7 @@ $(document).ready(function () {
             }
         },
         columns: [
-            {data: 'id', name: 'id'},
+            {data: 'id', name: 'id', visible: false},
             {data: 'descricao', name: 'descricao'},
             {data: 'ativo', name: 'ativo', visible: true, width: '60px',
                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {

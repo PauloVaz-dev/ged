@@ -44,6 +44,7 @@
                                             <th>Id</th>
                                             <th>Nome</th>
                                             <th>Email</th>
+                                            <th>Secretaria</th>
                                             <th>Instituição</th>
                                             <th>Ativo</th>
                                             <th>Ação</th>

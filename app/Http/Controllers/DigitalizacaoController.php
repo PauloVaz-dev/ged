@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Serbinario\Entities\Digitalizacao;
 use Serbinario\Entities\DigitalizacaoFile;
+use Serbinario\Entities\Modalidade;
 use Serbinario\Entities\Secretaria;
 use Serbinario\Entities\TipoDocumento;
 use Serbinario\Http\Requests\DigitalizacaoFormRequest;
@@ -57,10 +58,12 @@ class DigitalizacaoController extends Controller
         #Criando a consulta
         $rows = \DB::table('digitalizacao')
             ->leftJoin('despesas', 'despesas.id', '=', 'digitalizacao.despesa_id')
+            ->leftJoin('secretarias', 'secretarias.id', '=', 'digitalizacao.secretaria_id')
             ->leftJoin('users', 'users.id', '=', 'digitalizacao.user_id')
             ->select([
                 'digitalizacao.id',
                 'digitalizacao.descricao',
+                'secretarias.descricao as secretaria',
                 'digitalizacao.numero_processo',
                 'despesas.descricao as despesa',
                 'digitalizacao.competencia',
@@ -98,16 +101,22 @@ class DigitalizacaoController extends Controller
                     $query->where('digitalizacao.convenio', 'like', "%" . $request->get('convenio') . "%");
                 }
 
-                if ($request->has('conta')) {
-                    $query->where('digitalizacao.conta', 'like', "%" . $request->get('conta') . "%");
+                if ($request->has('despesa_id')) {
+                    $query->where('digitalizacao.despesa_id', '=',  $request->get('despesa_id') );
                 }
 
                 if ($request->has('numero_licitacao')) {
                     $query->where('digitalizacao.numero_licitacao', 'like', "%" . $request->get('numero_licitacao') . "%");
                 }
 
-                if ($request->has('despesa_id')) {
-                    $query->where('digitalizacao.despesa_id', '=', $request->get('despesa_id') );
+                if ($request->has('data_ini')) {
+                    $tableName = $request->get('filtro_por');
+                    $query->whereBetween( $tableName, [$request->get('data_ini'), $request->get('data_fim')])->get();
+
+                }
+
+                if ($request->has('filtro_por')) {
+                    $query->where($request->get('filtro_por'), 'like', "%" . $request->get('descricao') . "%");
                 }
             })
 
@@ -138,8 +147,10 @@ class DigitalizacaoController extends Controller
         }else{
             $secretarias = Secretaria::where('franquia_id', Auth::user()->franquia->id)->pluck('descricao','id')->all();
         }
+        $modalidades = Modalidade::pluck('descricao','id')->all();
+
         $tipoDocs = TipoDocumento::pluck('descricao','id')->all();
-        return view('digitalizacao.create' , compact('despesa_tipo', 'tipoDocs', 'secretarias'));
+        return view('digitalizacao.create' , compact('despesa_tipo', 'tipoDocs', 'secretarias', 'modalidades'));
     }
 
     /**
@@ -156,6 +167,7 @@ class DigitalizacaoController extends Controller
             $data = $this->getData($request);
             $data['despesa_id'] = $request->get('despesa_id');
             $data['user_id'] = \Auth::id();
+
             $arquivo = $this->ImageStore($request, 'arquivo', '');
             $digi = Digitalizacao::create($data);
 
@@ -201,6 +213,7 @@ class DigitalizacaoController extends Controller
         }else{
             $secretarias = Secretaria::where('franquia_id', Auth::user()->franquia->id)->pluck('descricao','id')->all();
         }
+        $modalidades = Modalidade::pluck('descricao','id')->all();
 
         $tipoDocs = TipoDocumento::pluck('descricao','id')->all();
         $digi = Digitalizacao::with('files', 'despesa', 'tipoDoc', 'secretaria')->find($id);
@@ -208,7 +221,7 @@ class DigitalizacaoController extends Controller
 
         $roles = \Spatie\Permission\Models\Role::pluck('name','id')->all();
         //dd($digi);
-        return view('digitalizacao.edit', compact('digi','roles', 'franquias', 'tipoDocs', 'secretarias'));
+        return view('digitalizacao.edit', compact('digi','roles', 'franquias', 'tipoDocs', 'secretarias', 'modalidades'));
 
     }
 

@@ -34,39 +34,45 @@
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control input-sm" id="numero_processo">
-                                        <label class="card-body__lable" for="Lastname2">N Processo</label>
+                                        <input type="text" class="form-control input-sm date" name="data_ini" id="data_ini">
+                                        <label class="card-body__lable" for="Lastname2">Data Início</label>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control input-sm" id="competencia">
-                                        <label class="card-body__lable" for="Lastname2">Conpetência</label>
+                                        <input type="text" class="form-control input-sm date" name="data_fim" id="data_fim">
+                                        <label class="card-body__lable" for="Lastname2">Data Final</label>
                                     </div>
                                 </div>
                             </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <input type="text" class="form-control input-sm" id="convenio">
-                                    <label  class="card-body__lable" for="Firstname2">Convênio</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <input type="text" class="form-control input-sm" id="conta">
-                                    <label class="card-body__lable" for="Lastname2">Conta</label>
-                                </div>
-                            </div>
 
-                            <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-2">
                                 <div class="form-group">
-                                    <input type="text" class="form-control input-sm" id="numero_licitacao">
-                                    <label  class="card-body__lable" for="Lastname2">N Licitação</label>
+                                    <select id="filtro_por" class="form-control input-sm" name="filtro_por" class="form-control input-sm">
+                                        <option value="digitalizacao.descricao">Descricao</option>
+                                        <option value="numero_processo">Número Processo</option>
+                                        <option value="competencia">Competência</option>
+                                        <option value="convenio">Convênio</option>
+                                        <option value="conta">Conta</option>
+                                        <option value="unidade_orcamento">Unidade Orcamento</option>
+                                        <option value="fornecedor">fornecedor</option>
+                                        <option value="numero_empenho">Numero Empenho</option>
+                                        <option value="numero_licitacao">Número Licitacao</option>
+                                        <option value="objeto_licitacao">Objeto Licitacao</option>
+                                        <option value="conta">Conta</option>
+                                        <option value="data_empenho">Data Empenho</option>
+                                        <option value="data_homologa">Data Homologa</option>
+
+
+
+                                    </select>
+                                    <label class="card-body__lable" for="Lastname2">Filtro Por</label>
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="row">
                             <div class="col-sm-12">

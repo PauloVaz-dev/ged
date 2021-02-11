@@ -32,7 +32,7 @@
                 {{ csrf_field() }}
                 <div class="card">
                     <div class="card-head style-primary">
-                        <header>Editar Usuários</header>
+                        <header>Editar Modalidade</header>
                         <div class="tools">
                             <div class="btn-group">
                                 <a href="{{ route('modalidade.index') }}" class="btn btn-primary" title="Show All Cliente">

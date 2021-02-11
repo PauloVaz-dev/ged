@@ -8,6 +8,7 @@ namespace Serbinario\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Serbinario\Entities\Instituicao;
+use Serbinario\Entities\Secretaria;
 use Spatie\Permission\Models\Role;
 use Serbinario\Http\Controllers\Controller;
 use Serbinario\Http\Requests\UserFormRequest;
@@ -52,8 +53,10 @@ class UsersController extends Controller
         #Criando a consulta
         $rows = \DB::table('users')
             ->leftJoin('franquias', 'franquias.id', '=', 'users.franquia_id')
+            ->leftJoin('secretarias', 'secretarias.id', '=', 'users.secretaria_id')
             ->select([
                 'users.id',
+                'secretarias.descricao as secretaria',
                 'users.email',
                 'users.name',
                 'franquias.nome',
@@ -90,10 +93,20 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $franquias = Instituicao::pluck('nome','id')->all();
-        $roles = \Spatie\Permission\Models\Role::pluck('name','id')->all();
+
+        $userLogado = User::find(Auth::id());
+        if($userLogado->franquia->id === 1){
+            $secretarias = Secretaria::pluck('descricao','id')->all();
+            $franquias = Instituicao::pluck('nome','id')->all();
+            $roles = Role::pluck('name','id')->all();
+        }else{
+            $secretarias = Secretaria::where('franquia_id', Auth::user()->franquia->id)->pluck('descricao','id')->all();
+            $franquias = Instituicao::where('id', Auth::user()->franquia->id)->pluck('nome','id')->all();
+            $roles = Role::where('franquia_id', Auth::user()->franquia->id)->pluck('name','id')->all();
+        }
+
         $userRole = [];
-        return view('users.create', compact('roles', 'franquias', 'userRole'));
+        return view('users.create', compact('roles', 'franquias', 'userRole', 'secretarias'));
     }
 
     /**
@@ -150,23 +163,21 @@ class UsersController extends Controller
     public function edit($id)
     {
 
-        $user = User::with('roles', 'franquia')->findOrFail($id);
+        $user = User::with('roles', 'franquia', 'secretaria')->findOrFail($id);
 
         $userLogado = User::find(Auth::id());
         if($userLogado->franquia->id === 1){
             $roles = Role::pluck('name','name')->all();
             $franquias = Instituicao::pluck('nome','id')->all();
+            $secretarias = Secretaria::pluck('descricao','id')->all();
         }else{
             $roles = Role::where('franquia_id', '=', Auth::user()->franquia->id)->pluck('name','name')->all();
             $franquias = Instituicao::where('id', '=', Auth::user()->franquia->id)->pluck('nome','id')->all();
+            $secretarias = Secretaria::where('franquia_id', Auth::user()->franquia->id)->pluck('descricao','id')->all();
         }
 
-
         $userRole = $user->roles->pluck('name','name')->all();
-
-
-
-        return view('users.edit', compact('user', 'roles', 'franquias', 'userRole'));
+        return view('users.edit', compact('user', 'roles', 'franquias', 'userRole', 'secretarias'));
     }
 
     /**

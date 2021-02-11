@@ -180,4 +180,8 @@ class Digitalizacao extends Model
         return $this->hasOne('Serbinario\Entities\Secretaria','id','secretaria_id');
     }
 
+    public function modalidade(){
+        return $this->hasOne('Serbinario\Entities\Modalidade','id','modalidade_id');
+    }
+
 }

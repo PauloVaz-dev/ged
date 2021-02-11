@@ -50,6 +50,7 @@
                                             <th>Convenio</th>
                                             <th>Conta</th>
                                             <th>Licitacao N</th>
+                                            <th>Secretaria</th>
                                             <th>Acao</th>
                                         </tr>
                                         </thead>
@@ -78,4 +79,5 @@
 
 @section('javascript')
     <script src="{{ asset('/js/digitalizacao/index.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('/js/mascaras.js')}}" type="text/javascript"></script>
 @stop

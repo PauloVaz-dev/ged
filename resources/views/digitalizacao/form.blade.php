@@ -54,7 +54,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('secretaria_id') ? 'has-error' : '' }}">
-        <label for="franquia_id" class="col-md-2 control-label">Instituição.: *</label>
+        <label for="franquia_id" class="col-md-2 control-label">Secretaria.: *</label>
         <div class="col-md-10">
             <select class="form-control input-sm" id="franquia_id" name="secretaria_id">
                 <option value="" style="display: none;" {{ old('$secretaria_id', null) }} disabled selected>Selecione uma Secretaria</option>

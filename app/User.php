@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'franquia_id', 'is_active',
+        'name', 'email', 'password', 'franquia_id', 'is_active', 'secretaria_id',
     ];
 
     /**
@@ -36,5 +36,9 @@ class User extends Authenticatable
     public function franquia()
     {
         return $this->hasOne('Serbinario\Entities\Instituicao','id','franquia_id');
+    }
+    public function secretaria()
+    {
+        return $this->hasOne('Serbinario\Entities\Secretaria','id','secretaria_id');
     }
 }

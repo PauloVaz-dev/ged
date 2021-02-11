@@ -1,7 +1,21 @@
-<div class="form-group {{ $errors->has('numero_licitacao') ? 'has-error' : '' }}">
-    <label for="modalidade_id" class="col-md-2 control-label text-bold">Unidade Orçamento.:</label>
+<div class="form-group {{ $errors->has('modalidade_id') ? 'has-error' : '' }}">
+    <label for="modalidade_id" class="col-md-2 control-label">Modalidade.: *</label>
     <div class="col-md-10">
-        <input class="form-control input-sm" name="modalidade_id" type="text" id="modalidade_id" value="{{ old('numero_licitacao', isset($digi->numero_licitacao) ? $digi->modalidade_id : null) }}" maxlength="100">
+        <select class="form-control input-sm" id="modalidade_id" name="modalidade_id">
+            <option value="" style="display: none;" {{ old('modalidade_id', null) }} disabled selected>Selecione uma Modalidade</option>
+            @foreach ($modalidades as $key => $modalidade)
+                <option value="{{ $key }}" {{ old('modalidade_id', isset($digi->modalidade->id) ? $digi->modalidade->id : null) == $key ? 'selected' : '' }}>
+                    {{ $modalidade }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="form-group {{ $errors->has('numero_licitacao') ? 'has-error' : '' }}">
+    <label for="unidade_orcamento" class="col-md-2 control-label text-bold">Unidade Orçamento.:</label>
+    <div class="col-md-10">
+        <input class="form-control input-sm" name="unidade_orcamento" type="text" id="unidade_orcamento" value="{{ old('unidade_orcamento', isset($digi->unidade_orcamento) ? $digi->unidade_orcamento : null) }}" maxlength="100">
         {!! $errors->first('unidade_orcamento', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
