@@ -96,8 +96,8 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="col-md-8">
-                                        <a href="#" type="button" id="localizar" class="btn btn-sm btn-flat btn-primary ink-reaction">Localizar</a>
-                                        <input class="btn btn-sm btn-primary"  id="limpar" type="button" value="Limpar">
+                                        <a href="#" type="button" id="localizar" class="btn btn-sm btn-primary">Localizar</a>
+                                        <input class="btn btn-sm  btn-flat ink-reaction"  id="limpar" type="button" value="Limpar">
                                     </div>
                                 </div>
                             </div>
