@@ -164,9 +164,9 @@
 						</a>
 						<!--start submenu -->
 						<ul>
-							@can('view.digitalizacao')
+
 								<li><a href="{{ route('digitalizacao.index') }}" class="active"><span class="title">Documentos</span></a></li>
-							@endcan
+
 							@can('create.digitalizacao')
 							<li class="gui-folder">
 								<a href="javascript:void(0);">

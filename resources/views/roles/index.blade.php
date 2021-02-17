@@ -23,7 +23,7 @@
                     <input name="_method" value="DELETE" type="hidden">
                     {{ csrf_field() }}
                     <div class="card">
-                        <div class="card-head style-primary">
+                        <div class="card-head style-digi">
                             <header>Lista de Grupos</header>
                             <div class="tools">
                                 <div class="btn-group">
@@ -58,7 +58,7 @@
                         <div class="card-actionbar">
                             @can('create.roles')
                                 <div class="card-actionbar-row">
-                                    <a href="{{ route('roles.role.create') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Novo Grupo</a>
+                                    <a href="{{ route('roles.role.create') }}" type="button" class="btn btn-flatink-reaction">Novo Grupo</a>
                                 </div>
                             @endcan
 

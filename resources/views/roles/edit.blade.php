@@ -30,7 +30,7 @@
                     <input name="_method" type="hidden" value="PUT">
                     {{ csrf_field() }}
                     <div class="card">
-                        <div class="card-head style-primary">
+                        <div class="card-head style-digi">
                             <header>Editar Grupo</header>
                             <div class="tools">
                                 <div class="btn-group">

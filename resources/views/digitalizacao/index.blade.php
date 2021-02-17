@@ -23,7 +23,7 @@
                 <input name="_method" value="DELETE" type="hidden">
                 {{ csrf_field() }}
                 <div class="card">
-                    <div class="card-head style-primary">
+                    <div class="card-head style-digi">
                         <header>Lista de documentos</header>
                         <div class="tools">
                             <div class="btn-group">

@@ -23,7 +23,7 @@
                 <input name="_method" value="DELETE" type="hidden">
                 {{ csrf_field() }}
                 <div class="card">
-                    <div class="card-head style-primary">
+                    <div class="card-head style-digi">
                         <header>Lista de Modalidades</header>
                         <div class="tools">
                             <div class="btn-group">
@@ -58,7 +58,7 @@
                     @can('create.modalidade')
                         <div class="card-actionbar">
                             <div class="card-actionbar-row">
-                                <a href="{{ route('modalidade.create') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Novo Usuário</a>
+                                <a href="{{ route('modalidade.create') }}" type="button" class="btn btn-flat ink-reaction">Novo Usuário</a>
                             </div>
                         </div>
                     @endcan

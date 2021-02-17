@@ -157,7 +157,7 @@ img{
     width: 100%;
     padding: 1.2rem;
     margin: 2rem 0;
-    background-color: #0aa89e;
+    background-color: #6a94bd;
     color: #fff;
     font-size: var(--normal-font-size);
     text-align: center;
@@ -178,7 +178,7 @@ img{
     transition: .3s;
 }
 .login__button:hover{
-    background-color: #0aa89e;
+    background-color: #4a94bd;
 }
 
 .login__account, .login__signin, .login__signup{
@@ -266,4 +266,9 @@ img{
         bottom: -1.5rem;
     }
 
+}
+
+
+button .login__button{
+    background-color: #6a94bd !important;
 }

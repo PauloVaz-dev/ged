@@ -69,18 +69,26 @@
                                         <option value="data_lei">Data Lei</option>
                                         <option value="data_admissao">Data Admissão</option>
                                         <option value="data_pagto">Data Pagamento</option>
-
-                                        
-
-
-
-
-
-
                                     </select>
                                     <label class="card-body__lable" for="Lastname2">Filtro Por</label>
                                 </div>
                             </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <select class="form-control input-sm" id="secretaria_id" name="secretaria_id">
+                                        <option value="" {{ old('$secretaria_id', null) }}>Todas</option>
+                                        @foreach ($secretarias as $key => $secretaria)
+                                            <option value="{{ $key }}" {{ old('$secretaria_id', isset($user->secretaria->id) ? $user->secretaria->id : null) == $key ? 'selected' : '' }}>
+                                                {{ $secretaria }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <label class="card-body__lable" for="Lastname2">Secretaria</label>
+                                </div>
+                            </div>
+
+
                         </div>
 
 

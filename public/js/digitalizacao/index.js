@@ -38,6 +38,7 @@ $(document).ready(function () {
                 d.data_fim = dateToEN(document.getElementById('data_fim').value),
                 d.filtro_por = $('select[name=filtro_por] option:selected').val();
                 d.despesa_id = $('select[name=despesa_id] option:selected').val();
+                d.secretaria_id = $('select[name=secretaria_id] option:selected').val();
             }
         },
         columns: [

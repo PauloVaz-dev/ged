@@ -29,7 +29,7 @@
         <div class="col-lg-12">
             <form method="POST" action="{{ route('roles.role.store') }}" accept-charset="UTF-8" id="create_franquia_form" name="create_franquia_form" class="form-horizontal">
                 <div class="card">
-                    <div class="card-head style-primary">
+                    <div class="card-head style-digi">
                         <header>Novo Grupo</header>
                         <div class="tools">
                             <div class="btn-group">
@@ -44,8 +44,8 @@
 
                     <div class="card-actionbar">
                         <div class="card-actionbar-row">
-                            <a href="{{ route('roles.role.index') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Voltar</a>
-                            <button type="submit" class="btn btn-flat btn-primary ink-reaction">Salvar</button>
+                            <a href="{{ route('roles.role.index') }}" type="button" class="btn btn-flat ink-reaction">Voltar</a>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>
                     </div>
                 </div><!--end .card -->

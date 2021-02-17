@@ -42,7 +42,14 @@ class DigitalizacaoController extends Controller
      */
     public function index()
     {
-        return view('digitalizacao.index');
+        $userLogado = User::find(Auth::id());
+        if($userLogado->franquia->id === 1){
+            $secretarias = Secretaria::pluck('descricao','id')->all();
+        }else{
+            $secretarias = Secretaria::where('franquia_id', Auth::user()->franquia->id)->pluck('descricao','id')->all();
+        }
+
+        return view('digitalizacao.index', compact('secretarias'));
     }
 
     /**
@@ -109,10 +116,13 @@ class DigitalizacaoController extends Controller
                     $query->where('digitalizacao.numero_licitacao', 'like', "%" . $request->get('numero_licitacao') . "%");
                 }
 
+                if ($request->has('secretaria_id')) {
+                    $query->where('digitalizacao.secretaria_id', '=', $request->get('secretaria_id'));
+                }
+
                 if ($request->has('data_ini')) {
                     $tableName = $request->get('filtro_por');
                     $query->whereBetween( $tableName, [$request->get('data_ini'), $request->get('data_fim')])->get();
-
                 }
 
                 if ($request->has('filtro_por')) {

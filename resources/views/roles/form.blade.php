@@ -11,17 +11,19 @@
 
 
 
-    <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+    <div class="grid-container">
         @foreach($permissionGroup as $name => $member)
-            {{ $name }}
-            @foreach ($member as $value)
-                <input id="permissions" class="" name="permission[]" type="checkbox" value="{{ $value->id  }}"  {{ in_array($value->id, $rolePermissions) ? 'checked' : '' }}>
-                {{ Form::label($value->description, ucfirst($value->description)) }}<br>
-            @endforeach
+            <div>
+                <div for="login" class="text-bold item">{{ $name }}:</div>
+                @foreach ($member as $value)
+                    <input id="permissions" class="" name="permission[]" type="checkbox" value="{{ $value->id  }}"  {{ in_array($value->id, $rolePermissions) ? 'checked' : '' }}>
+
+                    {{ Form::label($value->description, ucfirst($value->description)) }}<br>
+                @endforeach
+            </div>
 
         @endforeach
     </div>
-
     @role('super-admin')
 <div class="form-group">
     <label for="is_active" class="col-md-2 control-label text-bold">Ativo?.:</label>

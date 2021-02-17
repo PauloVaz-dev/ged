@@ -23,7 +23,7 @@
                     <input name="_method" value="DELETE" type="hidden">
                     {{ csrf_field() }}
                     <div class="card">
-                        <div class="card-head style-primary">
+                        <div class="card-head style-digi">
                             <header>Lista de Instituições</header>
                             <div class="tools">
                                 <div class="btn-group">
@@ -62,7 +62,7 @@
 
                         <div class="card-actionbar">
                             <div class="card-actionbar-row">
-                                <a href="{{ route('franquia.franquia.create') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Nova Instituição</a>
+                                <a href="{{ route('franquia.franquia.create') }}" type="button" class="btn btn-flat ink-reaction">Nova Instituição</a>
                             </div>
                         </div>
                     </div><!--end .card -->

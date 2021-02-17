@@ -9,7 +9,7 @@
                 <input name="_method" type="hidden" value="PUT">
                 {{ csrf_field() }}
                 <div class="card">
-                    <div class="card-head style-primary">
+                    <div class="card-head style-digi">
                         <header>Editar Documento</header>
                         <div class="tools">
                             <div class="btn-group">
@@ -27,7 +27,7 @@
 
                     <div class="card-actionbar">
                         <div class="card-actionbar-row">
-                            <a href="{{ route('digitalizacao.index') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Voltar</a>
+                            <a href="{{ route('digitalizacao.index') }}" type="button" class="btn btn-flat ink-reaction">Voltar</a>
                             <input class="btn btn-primary" type="submit" value="Atualizar">
                         </div>
                     </div>

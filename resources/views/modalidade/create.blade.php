@@ -43,8 +43,8 @@
 
                     <div class="card-actionbar">
                         <div class="card-actionbar-row">
-                            <a href="{{ route('modalidade.index') }}" type="button" class="btn btn-flat btn-primary ink-reaction">Voltar</a>
-                            <button type="submit" class="btn btn-flat btn-primary ink-reaction">Salvar</button>
+                            <a href="{{ route('modalidade.index') }}" type="button" class="btn btn-flat ink-reaction">Voltar</a>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>
                     </div>
                 </div><!--end .card -->

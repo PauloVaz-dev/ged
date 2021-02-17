@@ -239,6 +239,47 @@
     margin-top: -12px;
 }
 
+/* max-width  */
+@media screen and (min-width: 1024px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 10px
+    }
+}
+
+
+.vista-tecnica{
+}
+
+.vista-tecnica label{
+}
+
+.grid-item {
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    align-items: baseline;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.style-digi{
+    background-color: #6a94bd;
+    order-color: #2196f3;
+    color: #ffffff;
+}
+
+.text-primary {
+    color:  #6a94bd;
+}
+
+.btn-primary{
+    background-color: #6a94bd;
+}
+.btn-primary:hover{
+    background-color: #4a94bd;
+}
 
 
 

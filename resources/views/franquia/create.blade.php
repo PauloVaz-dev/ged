@@ -29,7 +29,7 @@
         <div class="col-lg-12">
             <form method="POST" action="{{ route('franquia.franquia.store') }}" accept-charset="UTF-8" id="create_franquia_form" name="create_franquia_form" class="form-horizontal" enctype="multipart/form-data">
                 <div class="card">
-                    <div class="card-head style-primary">
+                    <div class="card-head style-digi">
                         <header>Nova Instituição</header>
                         <div class="tools">
                             <div class="btn-group">
