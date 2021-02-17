@@ -26,7 +26,7 @@
                                             <option value="2">Folha</option>
                                             <option value="1">Licitação</option>
                                             <option value="3">Lei</option>
-                                            <option value="5">Outros</option>
+                                            <option value="5">Geral</option>
                                         </select>
                                         <label class="card-body__lable" for="Lastname2">Tipo</label>
                                     </div>

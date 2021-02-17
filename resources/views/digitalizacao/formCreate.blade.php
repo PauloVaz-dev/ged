@@ -87,7 +87,7 @@
         @include ('digitalizacao.formDespesa', ['digis' => null, ])
     @endif
 
-    @if($despesa_tipo == 'outros')
+    @if($despesa_tipo == 'geral')
         <input hidden  name="despesa_id" type="text"  value="5">
         @include ('digitalizacao.formOutros', ['digis' => null, ])
     @endif

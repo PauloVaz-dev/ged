@@ -177,7 +177,7 @@
 										<li><a href="/digitalizacao/create/licitacao" class="active"><span class="title">Licitação</span></a></li>
 										<li><a href="/digitalizacao/create/folha" class="active"><span class="title">Folha</span></a></li>
 										<li><a href="/digitalizacao/create/lei" class="active"><span class="title">Lei</span></a></li>
-										<li><a href="/digitalizacao/create/outros" class="active"><span class="title">Outros</span></a></li>
+										<li><a href="/digitalizacao/create/geral" class="active"><span class="title">Geral</span></a></li>
 
 									</ul><!--end /submenu -->
 							</li><!--end /menu-li -->
