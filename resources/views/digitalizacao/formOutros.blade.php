@@ -20,17 +20,4 @@
     </div>
 </div>
 
-<div class="form-group {{ $errors->has('tipodoc_id') ? 'has-error' : '' }}">
-    <label for="tipodoc_id" class="col-md-2 control-label text-bold">Tipo Documento.:</label>
-    <div class="col-md-10">
-        <select class="form-control input-sm" id="tipodoc_id" name="tipodoc_id">
-            <option value="" style="display: block;" disabled selected>Selecione uma Tipo</option>
-            @foreach ($tipoDocs as $key => $tipodoc)
-                <option value="{{ $key }}" {{ old('tipodoc_id', isset($digi->tipodoc_id) ? $digi->tipodoc_id : null) == $key ? 'selected' : '' }}>
-                    {{ $tipodoc }}
-                </option>
-            @endforeach
-        </select>
-    </div>
-</div>
 
